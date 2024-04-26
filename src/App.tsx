@@ -1,25 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
-import React from 'react';
-
+import * as React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Landing from './pages/Landing';
+import { UserInfoProvider } from './providers/UserInfoProvider';
+import Community from './pages/Community';
+import PersonalProjects from './pages/PersonalProjects';
+import About from './pages/About';
+import SecretPage from './pages/SecretPage';
+ 
 function App():JSX.Element  {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserInfoProvider>
+<BrowserRouter  future={{ v7_startTransition: true }}>
+      <Routes>
+        <Route path="/"  element= {<Landing/>}/> 
+        <Route path="/community"  element= {<Community/>}/>
+        <Route path="/projects"  element= {<PersonalProjects/>}/>
+        <Route path="/about"  element= {<About/>}/>
+        <Route path="/specials"  element= {<SecretPage/>}/>
+      </Routes>
+    </BrowserRouter>
+    </UserInfoProvider>
   );
 }
 
